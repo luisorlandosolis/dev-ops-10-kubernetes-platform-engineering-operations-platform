@@ -1,0 +1,47 @@
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+# VS Code
+.vscode/
+
+# JetBrains*.idea/
+
+# Python
+__pycache__/
+*.py*
+*.pyo
+
+# Terraform
+.terraform/
+*.*fstate
+*.tfstate.*
+
+# Ansible
+*.retry
+
+# Kubernetes*Secrets
+secrets.yaml
+secret.yaml
+**secret*yaml
+
+# Logs
+*.log
+
+# Environment *ariables
+.env
+.env.*
+
+# Temporary Files
+tmp/
+temp/
+
+# Screenshots
+docs/screenshots/*.png
+docs/screenshots/*.jpg
+docs/screenshots/*.jpeg
+
+# Generated Diagrams
+*.drawio.bak
