@@ -2,11 +2,57 @@
 
 ## Overview
 
-Dev-Ops-10 is a platform engineering project focused on the design, deployment, operation, monitoring, and validation of a multi-node Kubernetes environment hosted on Proxmox VE.
+Dev-Ops-10 is a platform engineering project focused on the design, deployment, operation, monitoring, and validation of a multi-node Kubernetes environment.
 
-The project expands upon previous portfolio work in infrastructure automation, backup and recovery, and deployment operations by introducing cloud-native infrastructure, container orchestration, observability, workload resiliency, and platform operations.
+The project expands upon previous portfolio work in infrastructure automation, backup and recovery, and deployment operations by introducing cloud-native orchestration concepts and platform engineering practices.
 
-Rather than serving as a simple Kubernetes lab, the platform is intended to simulate production-inspired operational practices and provide a foundation for future service hosting.
+Rather than serving as a simple Kubernetes lab, the platform is intended to simulate production-inspired operational practices and provide a foundation for future observability, CI/CD, and platform services.
+
+---
+
+## Current Status
+
+### Completed
+
+✅ Three-node Kubernetes cluster deployed
+
+✅ Control Plane operational
+
+✅ Two Worker Nodes operational
+
+✅ containerd runtime configured
+
+✅ Flannel networking deployed
+
+✅ CoreDNS validated
+
+✅ NGINX deployment validated
+
+✅ Replica scaling validated
+
+✅ Self-healing behavior validated
+
+✅ Service creation and endpoint discovery validated
+
+✅ Namespace isolation validated
+
+✅ Multi-workload operation validated
+
+### Current Phase
+
+Phase 4 - Platform Networking (Ingress)
+
+🚧 Next
+
+### Planned
+
+📋 Persistent Storage
+
+📋 Observability (Grafana & Prometheus)
+
+📋 CI/CD Integration
+
+📋 Platform Services
 
 ---
 
@@ -122,10 +168,10 @@ Current node inventory:
 
 | VMID | Hostname | IP Address | Role |
 |--------|----------|------------|--------|
-| 105 | dops10-k8s-template | N/A | Golden Template |
-| 106 | dops10-k8s-control-01 | 192.168.1.210 | Control Plane |
-| 107 | dops10-k8s-worker-01 | 192.168.1.211 | Worker Node |
-| 108 | dops10-k8s-worker-02 | 192.168.1.212 | Worker Node |
+| XXX | dops10-k8s-template | N/A | Golden Template |
+| XXX | dops10-k8s-controlXX | 10.0.0.XX | Control Plane |
+| XXX | dops10-k8s-worker-XX | 10.0.0.XX | Worker Node |
+| XXX | dops10-k8s-worker-XX | 10.0.0.XX | Worker Node |
 
 Additional architectural details are documented in:
 

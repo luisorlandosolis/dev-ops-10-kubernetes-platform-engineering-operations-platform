@@ -612,3 +612,445 @@ Result:
 ### Phase 3 - Kubernetes Workloads & Services
 
 🚧 In Progress
+---
+
+# Session 03
+
+## Workloads, Services, Self-Healing, and Namespaces
+
+Date: August 2026
+
+### Objective
+
+Move beyond cluster formation and begin operating Kubernetes as a platform.
+
+---
+
+## Replica Scaling Validation
+
+Validation:
+
+```bash
+kubectl scale deployment nginx --replicas=5
+
+Result:
+
+✅ Replica scaling validated
+
+Learning:
+
+```text
+Deployment
+= Blueprint
+
+ReplicaSet
+= Enforcer
+```
+
+---
+
+## Self-Healing Validation
+
+Result:
+
+✅ Self-healing behavior validated
+
+Learning:
+
+```text
+Desired State
+>
+Individual Pod
+```
+
+---
+
+## Service Validation
+
+Result:
+
+✅ Service architecture validated
+
+Learning:
+
+```text
+Service
+= Stable Identity
+
+Service
+= Front Door
+```
+
+---
+
+## Namespace Validation
+
+Created:
+
+```text
+monitoring
+```
+
+Result:
+
+✅ Namespace isolation validated
+
+Learning:
+
+```text
+Namespace
+= Compartment
+```
+
+---
+
+## Multi-Workload Validation
+
+Environment:
+
+```text
+default
+└─ nginx
+
+monitoring
+└─ nginx-monitor
+```
+
+Result:
+
+✅ Multi-workload operation validated
+
+---
+
+## Major Architecture Realizations
+
+```text
+Terraform
+= Desired Infrastructure
+
+Ansible
+= Desired Configuration
+
+Kubernetes
+= Desired Applications
+
+KrakkenOS
+= Desired Asset Operations
+```
+
+---
+
+## Current Status
+
+### Completed
+
+- Infrastructure Foundation
+- Cluster Formation
+- Workloads
+- Scaling
+- Self-Healing
+- Services
+- Namespaces
+
+### Next Phase
+
+- Ingress
+- Persistent Storage
+- Observability
+- CI/CD
+
+---
+
+# Session 04
+
+## Ingress, Namespace Architecture, and Storage Planning
+
+Date: August 2026
+
+### Objective
+
+Transition from Kubernetes fundamentals into platform architecture, ingress, storage strategy, and CI/CD planning.
+
+---
+## Namespace Architecture
+
+Created:
+
+```text
+monitoring
+cicd
+ingress
+```
+
+Current organization:
+
+```text
+default
+monitoring
+cicd
+ingress
+```
+
+Learning:
+
+```text
+Namespace
+= Department
+
+Namespace
+= Blast Radius Boundary
+```
+
+Major realization:
+
+```text
+Not Everything Needs To Break.
+```
+
+Result:
+
+✅ Multi-namespace architecture validated
+
+---
+
+## Ingress Controller Deployment
+
+Installed:
+
+```text
+ingress-nginx
+```
+
+Validation:
+
+```bash
+kubectl get pods -n ingress-nginx
+```
+
+Observed:
+
+```text
+ingress-nginx-controller
+Running
+```
+
+Result:
+
+✅ Ingress controller operational
+
+---
+## First Ingress Rule
+
+Implemented:
+
+```text
+nginx.lab.local
+```
+
+Traffic Flow:
+
+```text
+DNS
+↓
+Ingress
+↓
+Service
+↓
+Pods
+```
+
+Learning:
+
+```text
+Ingress
+= Reception Desk
+
+Service
+= Front Door
+
+Pods
+= Workers
+```
+
+Result:
+
+✅ Host-based routing concept validated
+
+---
+
+## Storage Architecture Investigation
+
+Instead of deploying Jenkins immediately, storage architecture was reviewed first.
+
+Primary Storage:
+
+```text
+/mnt/externalbackup
+
+Approx. 1.9 TB
+```
+
+Replication Storage:
+
+```text
+/srv/storage
+
+RAID1-STORAGE
+Approx. 1.8 TB
+```
+
+Learning:
+
+```text
+Application
+≠
+Data
+
+Pod
+≠
+Storage
+```
+
+Result:
+
+✅ Storage-first platform design approach established
+
+---
+## Jenkins Storage Decision
+
+Preferred architecture:
+
+```text
+Jenkins
+↓
+PVC
+↓
+Drive A
+↓
+RAID Replication
+↓
+Archive
+↓
+Cloud
+```
+
+Learning:
+
+```text
+Backup Strategy
+
+Must Be Designed
+
+Before Application Deployment
+```
+
+Result:
+
+✅ Backup-aware platform design established
+
+---
+
+## Harbor Planning
+
+Future namespace:
+
+```text
+cicd
+```
+
+Planned services:
+
+```text
+Jenkins
+Harbor
+```
+
+Target Architecture:
+
+```text
+cicd
+├── Jenkins
+└── Harbor
+```
+
+Result:
+
+✅ CI/CD platform architecture defined
+
+---
+
+## Major Architecture Realizations
+
+```text
+Deployment
+= Blueprint
+
+Pod
+= Worker
+
+Service
+= Front Door
+
+Namespace
+= Department
+
+Ingress
+= Reception Desk
+```
+
+Learning:
+
+```text
+Application
+≠
+Data
+
+Pod
+≠
+Storage
+
+Recovery
+Should Be Designed
+Before Deployment
+```
+
+---
+
+## Next Session
+
+1. Verify RAID health
+2. Review storage architecture
+3. Learn Persistent Volumes (PV)
+4. Learn Persistent Volume Claims (PVC)
+5. Deploy Jenkins with persistent storage
+6. Configure Jenkins ingress
+7. Plan Harbor deployment
+
+### Future Platform Vision
+
+```text
+Dev-Ops-10
+│
+├── ingress
+│   └── ingress-nginx
+│
+├── cicd
+│   ├── Jenkins
+│   └── Harbor
+│
+├── automation
+│   ├── Ansible
+│   └── Terraform
+│
+├── networking
+│   └── Bastion
+│
+├── krakken
+│   ├── Inventory
+│   ├── Knowledge
+│   └── Lifecycle
+│
+└── monitoring
+    ├── Grafana
+    └── Prometheus
+```

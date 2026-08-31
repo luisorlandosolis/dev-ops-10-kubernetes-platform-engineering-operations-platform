@@ -230,3 +230,122 @@ Operational recovery procedures should be documented and validated.
 ### Documentation First
 
 All major implementation activities should be documented throughout the project lifecycle.
+
+---
+
+# Current Kubernetes Platform Architecture
+
+```text
+Dev-Ops-10 Kubernetes Platform
+
+                    ┌─────────────────┐
+                    │   Control Plane │
+                    └────────┬────────┘
+                             │
+          ┌──────────────────┴──────────────────┐
+          │                                     │
+┌─────────▼─────────┐               ┌──────────▼─────────┐
+│     Worker-01     │               │     Worker-02      │
+└───────────────────┘               └────────────────────┘
+
+Namespaces
+
+default
+└── nginx
+
+monitoring
+└── nginx-monitor
+
+cicd
+└── Reserved For Jenkins & Harbor
+
+ingress
+└── ingress-nginx controller
+```
+
+---
+
+# Traffic Flow
+
+```text
+DNS
+ ↓
+Ingress
+ ↓
+Service
+ ↓
+Pods
+```
+
+Example:
+
+```text
+nginx.lab.local
+        ↓
+Ingress Rule
+        ↓
+nginx Service
+        ↓
+nginx Pods
+```
+
+---
+
+# Future Platform Vision
+
+```text
+Dev-Ops-10
+│
+├── ingress
+│   └── ingress-nginx
+│
+├── cicd
+│   ├── Jenkins
+│   └── Harbor
+│
+├── automation
+│   ├── Ansible
+│   └── Terraform
+│
+├── networking
+│   └── Bastion
+│
+├── krakken
+│   ├── Inventory
+│   ├── Knowledge
+│   └── Lifecycle
+│
+└── monitoring
+    ├── Grafana
+    └── Prometheus
+```
+
+---
+
+# Storage Strategy
+
+```text
+Applications
+        ↓
+      PVC
+        ↓
+Persistent Storage
+        ↓
+Drive A
+/mnt/externalbackup
+        ↓
+RAID1-STORAGE
+/srv/storage
+        ↓
+Archive
+        ↓
+iDrive Cloud
+```
+
+Key Principle:
+
+Application ≠ Data
+
+Pod ≠ Storage
+
+Recovery Planning Must Precede Deployment
