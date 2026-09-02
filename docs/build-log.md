@@ -1054,3 +1054,522 @@ Dev-Ops-10
     ├── Grafana
     └── Prometheus
 ```
+---
+
+# Session 05
+
+## Jenkins, Persistent Storage, and First CI/CD Validation
+
+Date: September 2026
+
+### Objective
+
+Deploy a real application on Kubernetes, investigate persistent storage concepts, validate ingress routing, and execute the first Jenkins pipeline.
+
+---
+## Kubernetes Storage Investigation
+
+Created dedicated storage locations for future Kubernetes workloads.
+
+Conceptual structure:
+
+```text
+Kubernetes
+├── Jenkins
+└── Harbor
+```
+
+Validated:
+
+```text
+✅ Shared storage accessible
+
+✅ SMB connectivity validated
+
+✅ Linux mount validation completed
+
+✅ Cross-platform access confirmed
+```
+
+Learning:
+
+```text
+Storage
+Must Be Designed
+
+Before
+Application Deployment
+```
+
+---
+## PV / PVC Learning
+
+Successfully created:
+
+```text
+jenkins-pv
+
+jenkins-pvc
+```
+
+Observed lifecycle:
+
+```text
+Available
+↓
+Bound
+```
+
+Learning:
+
+```text
+PV
+= Storage Room
+
+PVC
+= Reserved Filing Cabinet
+```
+
+Alternative Mental Model:
+
+```text
+PV
+= Parking Lot
+
+PVC
+= Reserved Parking Spot
+```
+
+Result:
+
+✅ Persistent storage concepts validated
+
+---
+
+## HostPath Failure Analysis
+
+Initial design:
+
+```yaml
+hostPath:
+  path: /mnt/kubernetes-share/Jenkins
+```
+
+Observed:
+
+```text
+PVC Bound ✅
+
+Jenkins Failed ❌
+```
+
+Investigation:
+
+```text
+Control Plane
+└── SMB Mounted
+
+Worker-02
+└── Jenkins Pod
+```
+
+Discovery:
+
+```text
+hostPath
+=
+Node Storage
+
+NOT
+
+Cluster Storage
+```
+
+Learning:
+
+```text
+Networking
+≠
+Storage
+```
+
+A node may have network connectivity while lacking access to the underlying storage path.
+
+Result:
+
+✅ Storage architecture limitation identified
+
+---
+
+## Storage Architecture Direction
+
+Future storage should leverage cluster-shared storage mechanisms such as:
+
+```text
+SMB CSI Driver
+
+or
+
+NFS
+
+or
+
+Cluster-Wide Shared Storage
+```
+
+Avoid relying on:
+
+```text
+hostPath
+```
+
+for production-style shared workloads.
+
+Result:
+
+✅ Future storage architecture defined
+
+---
+
+## Jenkins Deployment Success
+
+To continue storage troubleshooting independently from application deployment, Jenkins was temporarily deployed without persistent storage.
+
+Created:
+
+```text
+Deployment
+
+Service
+
+Ingress
+```
+
+Architecture:
+
+```text
+Jenkins Pod
+↓
+Service
+↓
+Ingress
+```
+
+Observed:
+
+```text
+Jenkins Pod
+Running
+```
+
+Result:
+
+✅ Jenkins successfully deployed on Kubernetes
+
+---
+
+## Service Learning
+
+Created:
+
+```text
+jenkins Service
+```
+
+Learning:
+
+```text
+Service
+=
+Permanent Phone Number
+```
+
+Service survives pod recreation and provides a stable application endpoint.
+
+Result:
+
+✅ Service concept validated
+
+---
+
+## Ingress Learning
+
+Created:
+
+```text
+jenkins-ingress
+```
+
+Learning:
+
+```text
+Ingress
+=
+Reception Desk
+```
+
+Traffic Flow:
+
+```text
+Host Header
+↓
+Ingress
+↓
+Service
+↓
+Pod
+```
+
+Result:
+
+✅ Ingress routing concept validated
+
+---
+
+## Browser Troubleshooting
+
+Observed:
+
+```text
+404 Not Found
+```
+
+Initial Assumption:
+
+```text
+Ingress Failure
+```
+
+Actual Discovery:
+
+```text
+Ingress Working ✅
+
+Host Header Mismatch ❌
+```
+
+Learning:
+
+```text
+Ingress
+Requires
+Hostname Matching
+```
+
+Result:
+
+✅ Ingress troubleshooting skills improved
+
+---
+## Jenkins Dashboard Success
+
+Successfully reached:
+
+```text
+Jenkins Setup Wizard
+```
+
+Completed:
+
+```text
+Suggested Plugin Installation
+
+Administrative User Creation
+
+Initial Configuration
+```
+
+Reached:
+
+```text
+Jenkins Dashboard
+```
+
+Result:
+
+✅ Jenkins operational and accessible through the Kubernetes platform
+
+---
+
+## First Pipeline Success
+
+Created:
+
+```text
+hello-world
+```
+
+Executed:
+
+```text
+Build #1
+```
+
+Observed:
+
+```text
+SUCCESS
+```
+
+Learning:
+
+```text
+Jenkins
+=
+Robot Arm
+```
+
+Purpose:
+
+```text
+Build
+
+Test
+
+Deploy
+
+Automate
+```
+
+Result:
+
+✅ First Jenkins pipeline executed successfully
+
+---
+
+## Mental Models Learned
+
+```text
+Git
+= History Book
+
+Jenkins
+= Robot Arm
+
+Harbor
+= Warehouse
+
+Kubernetes
+= Workers
+
+Service
+= Phone Number
+
+Ingress
+= Reception Desk
+
+PV
+= Storage Room
+
+PVC
+= Reserved Filing Cabinet
+```
+
+---
+
+## Current Cluster Status
+
+```text
+✅ Kubernetes Cluster
+
+✅ Ingress Controller
+
+✅ NGINX Test Application
+
+✅ Monitoring Test Application
+
+✅ Jenkins Deployment
+
+✅ Jenkins Service
+
+✅ Jenkins Ingress
+
+✅ DNS / Hosts Resolution
+
+✅ Jenkins Dashboard
+
+✅ First Pipeline Success
+```
+
+---
+
+## Recommended Resume Point
+
+Continue from:
+
+```text
+Jenkins Dashboard
+```
+
+Next objectives:
+
+```text
+1. Explore Jenkins UI
+
+2. Understand Pipeline Stages
+
+3. Connect GitHub
+
+4. Create Git-Based Pipeline
+
+5. Learn Build History
+
+6. Deploy Harbor
+
+7. Revisit Persistent Storage
+
+8. Implement Shared Storage Architecture
+
+9. Complete:
+
+Git
+↓
+Jenkins
+↓
+Harbor
+↓
+Kubernetes
+```
+
+---
+
+## Major Takeaway
+
+The most important lesson of the session was:
+
+```text
+Networking
+≠
+Storage
+```
+
+Kubernetes networking succeeded because a complete path existed:
+
+```text
+Ingress
+↓
+Service
+↓
+Pod
+```
+
+Storage failed because no cluster-wide storage path existed:
+
+```text
+Worker Node
+↓
+PVC
+↓
+hostPath
+↓
+Control Plane Mount
+
+❌ Not Shared Across Nodes
+```
+
+Result:
+
+✅ Platform architecture understanding significantly improved
+
+---
+
