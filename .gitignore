@@ -39,9 +39,9 @@ tmp/
 temp/
 
 # Screenshots
-docs/screenshots/*.png
-docs/screenshots/*.jpg
-docs/screenshots/*.jpeg
+#docs/screenshots/*.png
+#docs/screenshots/*.jpg
+#docs/screenshots/*.jpeg
 
 # Generated Diagrams
 *.drawio.bak
