@@ -1,5 +1,7 @@
 # Dev-Ops-10: Kubernetes Platform Engineering & Operations Platform
 
+![Platform Architecture](docs/diagrams/05-FinOps-Platform-Architecture.png)
+
 ## Overview
 
 Dev-Ops-10 is a platform engineering project focused on the design, deployment, operation, automation, monitoring, and validation of a multi-node Kubernetes environment.
@@ -60,34 +62,45 @@ Rather than serving as a simple Kubernetes lab, the platform simulates productio
 
 ✅ Private repository checkout validated
 
+✅ Platform service hosting validated
+
+✅ Static agent workload execution validated
+
+✅ Dynamic Kubernetes agent workload execution validated
+
+✅ ServiceAccount-based platform authentication validated
+
+✅ RBAC authorization model validated
+
+✅ Dynamic workload provisioning validated
+
 ### Current Phase
 
-Phase 6 - CI/CD Platform Services
+Phase 6 - Platform Services & Software Delivery
 
 ### In Progress
 
-🚧 Harbor Deployment
+🚧 Harbor Container Registry
 
-🚧 Container Image Workflow
+🚧 Container Build & Registry Workflow
 
-🚧 Jenkins Pipeline Expansion
+🚧 Advanced Jenkins Pipelines
 
-🚧 Shared Storage Architecture Refinement
+🚧 Platform Service Expansion
 
 ### Planned
 
-📋 Harbor Container Registry
+📋 GitHub Actions Evaluation
 
-📋 Jenkins Agents
+📋 GitOps Workflows
 
-📋 Kubernetes Agents
+📋 ArgoCD Deployment Platform
 
-📋 GitHub Webhooks
-
-📋 GitOps Concepts
+📋 Additional Kubernetes-Hosted Services
 
 📋 Advanced Observability
 
+📋 GitHub Webhooks
 ---
 
 ## Portfolio Relationship
@@ -170,7 +183,7 @@ Dev-Ops-10 was created to provide hands-on experience designing and operating Ku
 
 ### Platform Type
 
-Production-inspired home lab environment.
+Production-inspired platform engineering environment.
 
 ---
 
@@ -224,7 +237,32 @@ Production-inspired home lab environment.
 - GitHub Webhooks
 
 ---
+## Platform Services
 
+The Kubernetes platform hosts operational platform services and provides the foundation for future application workloads.
+
+### Currently Validated
+
+- Jenkins CI/CD Platform
+- Persistent Storage Services
+- Ingress Services
+- HTTPS Application Access
+- Dynamic Workload Scheduling
+- Static Agent Workload Execution
+- Dynamic Kubernetes Agent Workload Execution
+
+### Jenkins Hosted on Kubernetes
+![Jenkins On Kubernetes](docs/screenshots/02-Jenkins-On-Kubernetes.png)
+
+
+### Future Platform Services
+
+- Harbor Container Registry
+- Grafana
+- Prometheus
+- GitOps Services
+
+---
 ## Architecture
 
 ### Kubernetes Infrastructure
@@ -236,28 +274,40 @@ Production-inspired home lab environment.
 | XXX | k8s-worker-XX | 10.0.0.XX | Worker Node |
 | XXX | k8s-worker-XX | 10.0.0.XX | Worker Node |
 
-### Current CI/CD Architecture
+### Kubernetes Platform Operations
+
+![Kubernetes Platform Operations](docs/screenshots/01-Kubernetes-Platform-Operations.png)
+
+Additional architectural details are documented in:
+
+### Current Service Architecture
 
 ```text
 GitHub
-↓
-Jenkins
-↓
-Pipeline
-↓
-Kubernetes
+    ↓
+Jenkins CI/CD Platform
+    ↓
+Static Build Agent
+
+or
+
+Dynamic Kubernetes Agent
+    ↓
+Pipeline Execution
+    ↓
+Kubernetes Platform
 ```
 
-### Target Architecture
+### Future Service Architecture
 
 ```text
 GitHub
-↓
+    ↓
 Jenkins
-↓
-Harbor
-↓
-Kubernetes
+    ↓
+Harbor Container Registry
+    ↓
+Kubernetes Platform
 ```
 
 Additional architectural details are documented in:
@@ -284,6 +334,13 @@ docs/architecture.md
 
 ✅ Ingress routing
 
+✅ Dynamic workload scheduling
+
+✅ Dynamic agent lifecycle validation
+
+✅ Platform workload validation
+
+``
 ### Persistent Storage
 
 ✅ Persistent Volumes
@@ -292,24 +349,87 @@ docs/architecture.md
 
 ✅ SMB CSI Driver
 
-✅ Jenkins persistent storage
+✅ Jenkins Persistent Storage
+
+✅ Dynamic Workload Storage Validation
+
+✅ Shared Storage Architecture Validation
+
 
 ### CI/CD Platform
 
-✅ Jenkins deployment
+✅ Jenkins Deployment
 
-✅ Jenkins recovery
+✅ Jenkins Recovery Validation
 
-✅ GitHub integration
+✅ GitHub Integration
 
-✅ Private repository checkout
+✅ Private Repository Checkout
 
-✅ Pipeline execution
+✅ Pipeline Execution
 
-✅ Build validation
+✅ Static Agent Execution
+
+✅ Dynamic Kubernetes Agent Execution
+
+✅ Automated Agent Provisioning
+
+✅ Kubernetes Cloud Integration
+
+✅ Build Validation
 
 ---
+## Platform Validation Workloads
 
+### Azure FinOps Cost Observability Platform
+
+The Kubernetes platform was validated through execution of an operational Azure FinOps observability workload utilizing dynamically provisioned Kubernetes agents.
+
+### Validated Components
+
+- Grafana
+- Prometheus
+- PostgreSQL
+- Azure Cost Data
+- Dynamic Kubernetes Agent Scheduling
+
+### Validation Workflow
+
+```text
+GitHub
+    ↓
+Jenkins
+    ↓
+Dynamic Kubernetes Agent
+    ↓
+FinOps Validation Pipeline
+    ↓
+Azure FinOps Platform
+```
+### Dynamic Agent Validation
+![Dynamic Agent FinOps Validation](docs/screenshots/03-Dynamic-Agent-FinOps-Validation.png)
+
+### Validation Results
+
+✅ Platform Operational
+
+✅ Dynamic Agent Provisioning Successful
+
+✅ Platform Services Operational
+
+✅ Azure Cost Data Validation Successful
+
+✅ FinOps Validation Pipeline Successful
+
+### Platform Validation Success
+
+![Platform Validation Success](docs/screenshots/04-Platform-Validation-Success.png)
+
+### Outcome
+
+Successfully demonstrated Kubernetes-hosted platform services, dynamic workload scheduling, automated pipeline execution, and operational workload validation through the Azure FinOps Cost Observability Platform.
+
+---
 ## Lessons Learned
 
 ### Networking Does Not Equal Storage
@@ -339,11 +459,11 @@ Methodical investigation consistently produces better outcomes than trial-and-er
 
 ✅ Persistent Storage Operational
 
-✅ Jenkins Operational
+✅ Platform Services Operational
 
-✅ GitHub Integration Operational
+✅ Dynamic Workload Scheduling Operational
 
-✅ First Pipeline Operational
+✅ Azure FinOps Platform Validation Operational
 ```
 
 Current platform capability:
@@ -353,7 +473,11 @@ GitHub
 ↓
 Jenkins
 ↓
-Kubernetes
+Dynamic Kubernetes Agent
+↓
+Azure FinOps Validation
+↓
+Kubernetes Platform
 ```
 
 Next milestone:
